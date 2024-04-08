@@ -31,7 +31,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli/boot-files
     boot: [
       'i18n',
-      
+
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -49,7 +49,7 @@ module.exports = configure(function (/* ctx */) {
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
-      'roboto-font', // optional, you are not bound to it
+      // 'roboto-font', // optional, you are not bound to it
       'material-icons', // optional, you are not bound to it
     ],
 

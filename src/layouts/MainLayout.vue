@@ -1,116 +1,76 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
+  <q-layout view="lHh Lpr bFf">
+    <q-page-container
+      class="landing-content"
+      :style="{ height: landingContentHeight }"
     >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-
-    <q-page-container>
-      <router-view />
+      <div class="landing-content-inner">
+        <Navigation />
+        <router-view></router-view>
+      </div>
     </q-page-container>
+
+    <!-- Footer -->
+    <q-footer>
+      <span>&copy; 2024 My Awesome App</span>
+    </q-footer>
   </q-layout>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
-
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
-
+import { defineComponent, ref } from "vue";
+import Navigation from "../components/NavigationBar.vue";
 export default defineComponent({
-  name: 'MainLayout',
-
+  name: "MainLayout",
   components: {
-    EssentialLink
+    Navigation, // Register Navigation component
   },
+  setup() {
+    const landingContentHeight = ref(
+      window.innerWidth > 720 ? "697px" : "2028px"
+    ); //
 
-  setup () {
-    const leftDrawerOpen = ref(false)
-
+    window.addEventListener("resize", () => {
+      landingContentHeight.value = window.innerWidth > 720 ? "697px" : "2028px";
+    });
     return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
-})
+      landingContentHeight,
+    };
+  },
+});
 </script>
+
+<style lang="scss" scoped>
+.landing-content {
+  position: relative;
+  @media (min-width: 600px) {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(38, 194, 185, 0.5),
+        rgba(40, 139, 231, 0.5)
+      ),
+      url("../assets/images/backgroundImage.png");
+    background-size: cover;
+  }
+  @media (max-width: 599px) {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(40, 139, 231, 0.5),
+        rgba(38, 194, 185, 0.5)
+      ),
+      url("../assets/images/backgroundImage.png");
+    background-size: cover;
+  } /* Path to your background image */
+  background-position: center;
+}
+
+.landing-content-inner {
+  max-width: 1200px;
+  margin: 0px auto; /* Center align content */
+  color: white;
+}
+
+.q-toolbar {
+  background-color: #3498db; /* Blue background color for top bar */
+}
+</style>
