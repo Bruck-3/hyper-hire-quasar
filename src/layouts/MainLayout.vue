@@ -11,19 +11,19 @@
     </q-page-container>
 
     <!-- Footer -->
-    <q-footer>
-      <span>&copy; 2024 My Awesome App</span>
-    </q-footer>
+    <FooterBar />
   </q-layout>
 </template>
 
 <script>
 import { defineComponent, ref } from "vue";
 import Navigation from "../components/NavigationBar.vue";
+import FooterBar from "../components/FooterBar.vue";
 export default defineComponent({
   name: "MainLayout",
   components: {
     Navigation, // Register Navigation component
+    FooterBar,
   },
   setup() {
     const landingContentHeight = ref(
@@ -31,7 +31,7 @@ export default defineComponent({
     ); //
 
     window.addEventListener("resize", () => {
-      landingContentHeight.value = window.innerWidth > 720 ? "697px" : "2028px";
+      landingContentHeight.value = window.innerWidth > 720 ? "926px" : "2028px";
     });
     return {
       landingContentHeight,
