@@ -1,6 +1,49 @@
 <template>
   <q-page class="main-content">
-    <div class="card-slider">
+    <div class="row main-row">
+      <div class="col-12 col-md-6">
+        <img
+          v-if="$q.screen.gt.sm"
+          src="../assets/images/indexImages/imageInBox.svg"
+          alt=""
+        />
+        <img
+          v-else
+          src="../assets/images/indexImages/imageInBoxMobile.svg"
+          alt=""
+        />
+        <p class="main-text">
+          최고의 실력을 가진<br />
+          외국인 인재를 찾고 계신가요?
+        </p>
+        <p class="sub-text">
+          법률 및 인사관리 부담없이 <br v-if="$q.screen.gt.sm" />1주일 이내에
+          원격으로 채용해보세요.
+        </p>
+        <p class="underlined-text" v-if="$q.screen.gt.sm">
+          개발자가 필요하신가요?
+        </p>
+        <div class="row q-gutter" v-if="$q.screen.gt.sm">
+          <div class="col-3">
+            <hr class="horizontal-line" />
+            <p class="description-text">월 120만원</p>
+            <p class="detail-text">임금을 해당 국가를 기준으로 계산합니다.</p>
+          </div>
+          <div class="col-3 q-mx-lg">
+            <hr class="horizontal-line" />
+            <p class="description-text">평균 월 120만원</p>
+            <p class="detail-text">임금을 해당 국가를 기준으로 계산합니다.</p>
+          </div>
+          <div class="col-3">
+            <hr class="horizontal-line" />
+            <p class="description-text">평균 월 120만원</p>
+            <p class="detail-text">임금을 해당 국가를 기준으로 계산합니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6"></div>
+    </div>
+    <div v-if="$q.screen.gt.sm" class="card-slider">
       <div class="card-wrapper flex">
         <q-card
           flat
@@ -147,6 +190,18 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.main-row {
+  @media (min-width: 601px) {
+    padding-top: 60px;
+  }
+  @media (max-width: 600px) {
+    padding: 20px;
+  }
+  @media (min-width: 601px) {
+    margin-bottom: 80px;
+    padding: 15px;
+  }
+}
 .main-content {
   @media (max-width: 600px) {
     padding: 20px;
@@ -156,9 +211,50 @@ export default defineComponent({
     padding-top: 60px;
   }
 }
+.main-text {
+  @media (max-width: 600px) {
+    font-size: 36px;
+    font-weight: 900;
+  }
+  @media (min-width: 601px) {
+    font-size: 48px;
+    font-weight: 900;
+  }
+}
+.sub-text {
+  font-size: 24px;
+  font-weight: 900;
+  @media (max-width: 600px) {
+    font-size: 18px;
+    font-weight: 900;
+  }
+  @media (min-width: 601px) {
+    font-size: 24px;
+    font-weight: 900;
+  }
+}
+.horizontal-line {
+  margin-top: 50px;
+  border-top: 0px;
+}
+.underlined-text {
+  text-decoration: underline;
+  font-weight: 900;
+  font-size: 18px;
+}
+.description-text {
+  margin-top: 15px;
+  font-weight: 900;
+  font-size: 18px;
+}
+.detail-text {
+  margin-top: -10px;
+  font-size: 16px;
+}
 .card-slider {
   width: 100%;
 }
+
 .card-wrapper {
   width: 100%;
   flex-wrap: nowrap;
