@@ -85,6 +85,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .navigation {
+  position: fixed;
   background-color: transparent; /* Example background color for navigation */
   max-width: 1200px;
   margin: 0px auto; /* Center align content */
