@@ -41,8 +41,105 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6"></div>
+      <div class="col-12 col-md-6">
+        <div class="flex justify-center">
+          <img
+            src="../assets/images/indexImages/indexCardDescription.svg"
+            alt=""
+          />
+        </div>
+        <div class="flex justify-between card-set-container">
+          <div class="flex items-center">
+            <q-icon
+              @click="changeActiveIndex(1)"
+              size="lg"
+              name="chevron_left"
+            ></q-icon>
+          </div>
+          <div class="carousel-container">
+            <q-card class="carousel-card card1">
+              <div class="flex justify-center image-container">
+                <img src="../assets/images/indexImages/photograph.png" alt="" />
+              </div>
+              <p class="talent-name text-center">Abhishek Gupta</p>
+              <p class="talent-experience text-center">마케팅 · 2y+</p>
+              <div class="flex justify-center">
+                <p class="qualities">마케팅 콘텐츠 제작</p>
+              </div>
+              <div class="flex justify-center">
+                <p class="qualities">인스타그램 관리</p>
+              </div>
+              <div class="flex justify-center">
+                <p class="qualities">트위터 관리</p>
+                <p class="qualities">블로그 글 작성</p>
+              </div>
+            </q-card>
+            <q-card class="carousel-card card2">
+              <div class="flex justify-center image-container">
+                <img src="../assets/images/indexImages/photograph.png" alt="" />
+              </div>
+              <p class="talent-name text-center">Abhishek Gupta</p>
+              <p class="talent-experience text-center">마케팅 · 2y+</p>
+              <div class="flex justify-center">
+                <p class="qualities">마케팅 콘텐츠 제작</p>
+              </div>
+              <div class="flex justify-center">
+                <p class="qualities">인스타그램 관리</p>
+              </div>
+              <div class="flex justify-center">
+                <p class="qualities">트위터 관리</p>
+                <p class="qualities">블로그 글 작성</p>
+              </div>
+            </q-card>
+            <q-card class="carousel-card card3">
+              <div class="flex justify-center image-container">
+                <img src="../assets/images/indexImages/photograph.png" alt="" />
+              </div>
+              <p class="talent-name text-center">Abhishek Gupta</p>
+              <p class="talent-experience text-center">마케팅 · 2y+</p>
+              <div class="flex justify-center">
+                <p class="qualities">마케팅 콘텐츠 제작</p>
+              </div>
+              <div class="flex justify-center">
+                <p class="qualities">인스타그램 관리</p>
+              </div>
+              <div class="flex justify-center">
+                <p class="qualities">트위터 관리</p>
+                <p class="qualities">블로그 글 작성</p>
+              </div>
+            </q-card>
+          </div>
+
+          <div class="flex items-center">
+            <q-icon size="lg" name="chevron_right"></q-icon>
+          </div>
+        </div>
+        <div v-if="$q.screen.lt.sm" class="checkbox-container">
+          <div class="flex" v-if="$q.screen.lt.sm">
+            <div class="flex one-checkbox">
+              <img src="../assets/images/Checkbox.svg" alt="" />
+              <p>한국어 능력</p>
+            </div>
+            <div class="flex one-checkbox">
+              <img src="../assets/images/Checkbox.svg" alt="" />
+              <p>업무 수행 능력</p>
+            </div>
+          </div>
+          <div class="flex" v-if="$q.screen.lt.sm">
+            <div class="flex items-center one-checkbox">
+              <img src="../assets/images/Checkbox.svg" alt="" />
+              <p>한국어 능력</p>
+            </div>
+            <div class="flex items-center one-checkbox">
+              <img src="../assets/images/Checkbox.svg" alt="" />
+              <p>업무 수행 능력</p>
+            </div>
+          </div>
+        </div>
+        <p class="yellow-text" v-if="$q.screen.lt.sm">발자가 필요하신가요?</p>
+      </div>
     </div>
+
     <div v-if="$q.screen.gt.sm" class="card-slider">
       <div class="card-wrapper flex">
         <q-card
@@ -172,9 +269,6 @@ export default defineComponent({
       setInterval(() => {
         currentIndex.value = (currentIndex.value + 1) % features.length;
         translateX.value -= 340;
-        // if (currentIndex.value === 0) {
-        //   translateX.value = 0;
-        // }
       }, 5000);
     };
 
@@ -194,13 +288,16 @@ export default defineComponent({
   @media (min-width: 601px) {
     padding-top: 60px;
   }
-  @media (max-width: 600px) {
-    padding: 20px;
-  }
   @media (min-width: 601px) {
-    margin-bottom: 80px;
-    padding: 15px;
+    margin-bottom: 40px;
   }
+}
+.card-set-container {
+  @media (max-width: 600px) {
+    margin-top: 20px;
+  }
+
+  height: 100%;
 }
 .main-content {
   @media (max-width: 600px) {
@@ -277,5 +374,146 @@ export default defineComponent({
   }
   font-size: 24px;
   font-weight: bold;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.carousel-card {
+  @media (max-width: 600px) {
+    width: 215.41px;
+    height: 287px;
+  }
+
+  @media (min-width: 601px) {
+    width: 259px;
+    height: 366px;
+  }
+  border-radius: 12px;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  .image-container img {
+    width: 120px;
+    height: 120px;
+    margin-top: 40px;
+    @media (max-width: 600px) {
+      width: 80px;
+      height: 80px;
+      margin-top: 20px;
+    }
+  }
+  .talent-name {
+    color: #24252f;
+    font-size: 24px;
+    font-weight: 900;
+    margin-top: 20px;
+    @media (max-width: 600px) {
+      font-size: 18px;
+      font-weight: 900;
+      margin-top: 10px;
+    }
+  }
+  .talent-experience {
+    color: #4a77ff;
+    font-size: 16px;
+    font-weight: 900;
+    margin-top: -15px;
+    @media (max-width: 600px) {
+      font-size: 14px;
+      font-weight: 900;
+      margin-top: -10px;
+    }
+  }
+  .qualities {
+    color: #5e626f;
+    border: 1.4px solid #c1c5cf;
+    border-radius: 6px;
+    padding: 4px 6px;
+    font-weight: 900;
+    font-size: 16px;
+    max-width: 132px;
+    margin: 4px 2px;
+    @media (max-width: 600px) {
+      font-size: 12px;
+      font-weight: 900;
+    }
+  }
+}
+
+.card1 {
+  background-color: rgba(237, 252, 255, 1);
+  position: absolute;
+  left: -20px;
+  @media (max-width: 600px) {
+    left: -80px;
+  }
+  @media (min-width: 601px) {
+    width: 259px;
+    height: 366px;
+  }
+  .image-container img {
+    width: 90px;
+    height: 90px;
+    margin-top: 40px;
+    @media (max-width: 600px) {
+      width: 40px;
+      height: 40px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.card2 {
+  background-color: rgba(237, 252, 255, 1);
+  position: absolute;
+  right: -10px;
+  @media (max-width: 600px) {
+    right: -80px;
+  }
+  .image-container img {
+    width: 90px;
+    height: 90px;
+    margin-top: 40px;
+    @media (max-width: 600px) {
+      width: 40px;
+      height: 40px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.card3 {
+  background-color: white;
+  position: absolute;
+  width: 292px;
+  height: 408px;
+  @media (max-width: 600px) {
+    width: 200.41px;
+    height: 307px;
+  }
+}
+.checkbox-container {
+  margin-top: 30px;
+  .one-checkbox {
+    margin-left: 13px;
+    padding-top: 4px;
+    p {
+      font-size: 16px;
+      font-weight: 900;
+      margin-top: 12px;
+      margin-left: 4px;
+    }
+  }
+}
+.yellow-text {
+  color: #fbff23;
+  font-size: 16px;
+  font-weight: 900;
+  margin-top: 12px;
+  margin-left: 12px;
+  text-decoration: underline;
 }
 </style>

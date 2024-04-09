@@ -27,11 +27,11 @@ export default defineComponent({
   },
   setup() {
     const landingContentHeight = ref(
-      window.innerWidth > 720 ? "697px" : "2028px"
+      window.innerWidth > 720 ? "926px" : "926px"
     ); //
 
     window.addEventListener("resize", () => {
-      landingContentHeight.value = window.innerWidth > 720 ? "926px" : "2028px";
+      landingContentHeight.value = window.innerWidth > 720 ? "926px" : "926px";
     });
     return {
       landingContentHeight,
@@ -60,6 +60,7 @@ export default defineComponent({
       ),
       url("../assets/images/backgroundImage.png");
     background-size: cover;
+    padding-bottom: 980px !important;
   } /* Path to your background image */
   background-position: center;
 }

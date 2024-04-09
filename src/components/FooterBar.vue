@@ -134,11 +134,11 @@ export default defineComponent({
   @media (max-width: 600px) {
     padding: 20px;
     padding-top: 40px;
-    height: 1063px;
+    height: 900px;
   }
   @media (min-width: 601px) {
     padding-top: 60px;
-    height: 450px;
+    height: 400px;
   }
 }
 .remove-fixed-bottom {
