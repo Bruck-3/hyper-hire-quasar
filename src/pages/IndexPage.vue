@@ -298,12 +298,15 @@ export default defineComponent({
     };
     onMounted(() => {
       // Add the fadeInUp animation to main-text and sub-text after the component is mounted
-      mainText.value.classList.add("fade-in-up");
-      subText.value.classList.add("fade-in-up");
-      descriptions.value.classList.add("fade-in");
-      imageDesktop.value.classList.add("fade-in-800");
-      imageMobile.value.classList.add("fade-in-800");
-      carouselContainer.value.classList.add("fade-in");
+
+      // Add the fadeInUp animation to main-text and sub-text after the component is mounted
+      if (mainText.value) mainText.value.classList.add("fade-in-up");
+      if (subText.value) subText.value.classList.add("fade-in-up");
+      if (descriptions.value) descriptions.value.classList.add("fade-in");
+      if (imageDesktop.value) imageDesktop.value.classList.add("fade-in-800");
+      if (imageMobile.value) imageMobile.value.classList.add("fade-in-800");
+      if (carouselContainer.value)
+        carouselContainer.value.classList.add("fade-in");
     });
     startSlider();
 
