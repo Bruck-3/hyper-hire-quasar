@@ -3,27 +3,35 @@
     <div class="row main-row">
       <div class="col-12 col-md-6">
         <img
+          class="teller"
           v-if="$q.screen.gt.sm"
           src="../assets/images/indexImages/imageInBox.svg"
           alt=""
+          ref="imageDesktop"
         />
         <img
           v-else
+          class="teller"
           src="../assets/images/indexImages/imageInBoxMobile.svg"
           alt=""
+          ref="imageMobile"
         />
-        <p class="main-text">
+        <p class="main-text" ref="mainText">
           최고의 실력을 가진<br />
           외국인 인재를 찾고 계신가요?
         </p>
-        <p class="sub-text">
+        <p class="sub-text" ref="subText">
           법률 및 인사관리 부담없이 <br v-if="$q.screen.gt.sm" />1주일 이내에
           원격으로 채용해보세요.
         </p>
         <p class="underlined-text" v-if="$q.screen.gt.sm">
           개발자가 필요하신가요?
         </p>
-        <div class="row q-gutter" v-if="$q.screen.gt.sm">
+        <div
+          class="row q-gutter descriptions-desktop"
+          ref="descriptions"
+          v-if="$q.screen.gt.sm"
+        >
           <div class="col-3">
             <hr class="horizontal-line" />
             <p class="description-text">월 120만원</p>
@@ -44,13 +52,19 @@
       <div class="col-12 col-md-6">
         <div class="flex justify-center">
           <img
+            class="teller"
             src="../assets/images/indexImages/indexCardDescription.svg"
             alt=""
+            ref="imageMobile"
           />
         </div>
-        <div class="flex justify-between card-set-container">
+        <div
+          class="flex justify-between card-set-container"
+          ref="carouselContainer"
+        >
           <div class="flex items-center">
             <q-icon
+              class="cursor-pointer"
               @click="changeActiveIndex(1)"
               size="lg"
               name="chevron_left"
@@ -111,7 +125,11 @@
           </div>
 
           <div class="flex items-center">
-            <q-icon size="lg" name="chevron_right"></q-icon>
+            <q-icon
+              class="cursor-pointer"
+              size="lg"
+              name="chevron_right"
+            ></q-icon>
           </div>
         </div>
         <div v-if="$q.screen.lt.sm" class="checkbox-container">
@@ -165,7 +183,7 @@ import desktop2 from "../assets/images/indexImages/desktop2.svg";
 import desktop3 from "../assets/images/indexImages/desktop3.svg";
 import desktop4 from "../assets/images/indexImages/desktop4.svg";
 import desktop5 from "../assets/images/indexImages/desktop5.svg";
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 const features = [
   {
     src: desktop1,
@@ -191,6 +209,13 @@ const features = [
 export default defineComponent({
   name: "IndexPage",
   setup() {
+    const mainText = ref(null);
+    const subText = ref(null);
+    const descriptions = ref(null);
+    const imageDesktop = ref(null);
+    const imageMobile = ref(null);
+    const carouselContainer = ref(null);
+
     const currentIndex = ref(0);
     const translateX = ref(0);
 
@@ -271,10 +296,24 @@ export default defineComponent({
         translateX.value -= 340;
       }, 5000);
     };
-
+    onMounted(() => {
+      // Add the fadeInUp animation to main-text and sub-text after the component is mounted
+      mainText.value.classList.add("fade-in-up");
+      subText.value.classList.add("fade-in-up");
+      descriptions.value.classList.add("fade-in");
+      imageDesktop.value.classList.add("fade-in-800");
+      imageMobile.value.classList.add("fade-in-800");
+      carouselContainer.value.classList.add("fade-in");
+    });
     startSlider();
 
     return {
+      imageDesktop,
+      imageMobile,
+      descriptions,
+      mainText,
+      carouselContainer,
+      subText,
       features,
       translateX,
       infiniteFeatures,
@@ -286,19 +325,43 @@ export default defineComponent({
 <style lang="scss" scoped>
 .main-row {
   @media (min-width: 601px) {
-    padding-top: 60px;
-  }
-  @media (min-width: 601px) {
     margin-bottom: 40px;
   }
 }
 .card-set-container {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
   @media (max-width: 600px) {
     margin-top: 20px;
   }
 
   height: 100%;
 }
+.main-text,
+.sub-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+}
+.fade-in-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+.descriptions-desktop {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.fade-in {
+  opacity: 1;
+}
+.teller {
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+.fade-in-800 {
+  opacity: 1;
+}
+
 .main-content {
   @media (max-width: 600px) {
     padding: 20px;

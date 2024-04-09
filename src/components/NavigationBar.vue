@@ -1,5 +1,5 @@
 <template>
-  <q-header class="navigation">
+  <q-header class="navigation" :class="{ 'linear-background': isScrolled }">
     <q-toolbar class="flex justify-between">
       <img class="logo-image cursor-pointer" src="../assets/images/logoh.svg" />
       <div v-if="$q.screen.gt.sm" class="flex">
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 
 export default defineComponent({
   name: "NavigationBar",
@@ -74,7 +74,18 @@ export default defineComponent({
       // Implement item click logic here
     };
 
+    const isScrolled = ref(false);
+
+    const handleScroll = () => {
+      isScrolled.value = window.scrollY > 0;
+    };
+
+    onMounted(() => {
+      window.addEventListener("scroll", handleScroll);
+    });
+
     return {
+      isScrolled,
       drawerOpen,
       openDrawer,
       onItemClick,
@@ -106,5 +117,13 @@ export default defineComponent({
 }
 .q-btn.rounded-borders {
   border-radius: 8px;
+}
+.linear-background {
+  background: linear-gradient(
+    to bottom,
+    rgba(38, 194, 185, 0.1),
+    rgba(40, 139, 231, 0.3)
+  );
+  transition: transform 1s ease-in-out;
 }
 </style>
